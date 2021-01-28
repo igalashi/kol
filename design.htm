@@ -1,73 +1,73 @@
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=shift_jis" >
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>KEK Online Class Library Design Principle</title>
 </head>
 <body>
 <hr>
 <div align=center>
-<h2>network ƒf[ƒ^ûW—pC++ class library‚ÌİŒv•ûj</h2>
+<h2>network ãƒ‡ãƒ¼ã‚¿åé›†ç”¨C++ class libraryã®è¨­è¨ˆæ–¹é‡</h2>
 (&copy;2006 Hirofumi Fujii, KEK Online-electronics group)<br>
 (Revised: 24-Aug-2006)
 </div>
 <hr>
-[<a href="index.htm">–ß‚é</a>]
+[<a href="index.htm">æˆ»ã‚‹</a>]
 <hr>
-<h3>‚Í‚¶‚ß‚É</h3>
-<p>‚±‚Ì•¶‘‚ÍA’˜Ò‚ª»ì‚µ‚½ network ƒf[ƒ^ûW—pC++ class library ‚ÌİŒv•ûj‚É‚Â‚¢‚Ä
-q‚×‚½‚à‚Ì‚Å‚ ‚éB
-<h3>İŒv•ûj</h3>
-<p>TCP stream ‚â Thread ‚ğˆµ‚¤ C++ class library ‚Í¢‚Ì’†‚ÉŠù‚É‚ ‚éB‚»‚±‚ÅA
-–{ƒpƒbƒP[ƒW‚Å‚Í“Á‚É‹Ã‚Á‚½‚±‚Æ‚Í‚µ‚È‚¢B‚Å‚«‚é‚¾‚¯’Pƒ‚É C ‚Ì socket library ‚â
-thread library ‚ğ class ‰»‚·‚é‚É‚Æ‚Ç‚ß‚éB
+<h3>ã¯ã˜ã‚ã«</h3>
+<p>ã“ã®æ–‡æ›¸ã¯ã€è‘—è€…ãŒè£½ä½œã—ãŸ network ãƒ‡ãƒ¼ã‚¿åé›†ç”¨C++ class library ã®è¨­è¨ˆæ–¹é‡ã«ã¤ã„ã¦
+è¿°ã¹ãŸã‚‚ã®ã§ã‚ã‚‹ã€‚
+<h3>è¨­è¨ˆæ–¹é‡</h3>
+<p>TCP stream ã‚„ Thread ã‚’æ‰±ã† C++ class library ã¯ä¸–ã®ä¸­ã«æ—¢ã«ã‚ã‚‹ã€‚ãã“ã§ã€
+æœ¬ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ã§ã¯ç‰¹ã«å‡ã£ãŸã“ã¨ã¯ã—ãªã„ã€‚ã§ãã‚‹ã ã‘å˜ç´”ã« C ã® socket library ã‚„
+thread library ã‚’ class åŒ–ã™ã‚‹ã«ã¨ã©ã‚ã‚‹ã€‚
 <p>
-ˆê•û class ‰»‚·‚é‚É“–‚½‚èAmodel ‚Æ‚µ‚½‚Ì‚Í AiÀsŒø—¦‚Í‚Æ‚à‚©‚­jprogramming ‚µ‚â‚·‚¢
-‚ÆŒ¾‚í‚ê‚Ä‚¢‚é Java ‚Å‚ ‚éB“Á‚É"JAVAƒvƒƒOƒ‰ƒ€@ƒNƒCƒbƒN@ƒŠƒtƒ@ƒŒƒ“ƒX"‚ÉŒfÚ‚³‚ê‚Ä
-‚¢‚é network ‚Ì—á‘è‚ª‚Ù‚Ú‚»‚Ì‚Ü‚ÜÄ‚«’¼‚¹‚é‚±‚Æ‚ğ‹­‚­ˆÓ¯‚µ‚½B
+ä¸€æ–¹ class åŒ–ã™ã‚‹ã«å½“ãŸã‚Šã€model ã¨ã—ãŸã®ã¯ ã€ï¼ˆå®Ÿè¡ŒåŠ¹ç‡ã¯ã¨ã‚‚ã‹ãï¼‰programming ã—ã‚„ã™ã„
+ã¨è¨€ã‚ã‚Œã¦ã„ã‚‹ Java ã§ã‚ã‚‹ã€‚ç‰¹ã«"JAVAãƒ—ãƒ­ã‚°ãƒ©ãƒ ã€€ã‚¯ã‚¤ãƒƒã‚¯ã€€ãƒªãƒ•ã‚¡ãƒ¬ãƒ³ã‚¹"ã«æ²è¼‰ã•ã‚Œã¦
+ã„ã‚‹ network ã®ä¾‹é¡ŒãŒã»ã¼ãã®ã¾ã¾ç„¼ãç›´ã›ã‚‹ã“ã¨ã‚’å¼·ãæ„è­˜ã—ãŸã€‚
 <p>
-ã‹L“ñ‚Â‚Ì—v‹‚ğ–‚½‚·‚½‚ß‚É
+ä¸Šè¨˜äºŒã¤ã®è¦æ±‚ã‚’æº€ãŸã™ãŸã‚ã«
 <ul>
-<li>Socket ‚ğˆµ‚¤ classF‚±‚ê‚Í’Pƒ‚É BSD socket library ‚Ì socket descriptor ‚ğ‰B•Á‚·‚é
-‚¾‚¯‚É—¯‚ß‚éB
-<li>TCP stream ‚ğˆµ‚¤ classF‚±‚ê‚Í socket ‚ğƒƒ“ƒo[‚Æ‚µ‚Ä‚¿AƒCƒ“ƒ^[ƒtƒF[ƒX‚Í
-•W€ library ‚Ì iostream‚É‹ß‚Ã‚¯‚éB‚à‚µ‚­‚Í iostream ‚©‚ç”h¶‚³‚¹‚éB
-<li>Thread ‚ğˆµ‚¤ classA‚±‚ê‚à’Pƒ‚É pthread ‚Ì start routine ‚Æ thread descriptor ‚ğ
-‰B•Á‚·‚é‚¾‚¯‚É—¯‚ß‚éB
-<li>Thread ‚Ì start routine ‚Ì‰B•Á‚Ìd•û‚ÍAJava ‚Ì runnable class ‚ğ model ‚Æ‚·‚éB
+<li>Socket ã‚’æ‰±ã† classï¼šã“ã‚Œã¯å˜ç´”ã« BSD socket library ã® socket descriptor ã‚’éš è”½ã™ã‚‹
+ã ã‘ã«ç•™ã‚ã‚‹ã€‚
+<li>TCP stream ã‚’æ‰±ã† classï¼šã“ã‚Œã¯ socket ã‚’ãƒ¡ãƒ³ãƒãƒ¼ã¨ã—ã¦æŒã¡ã€ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ã¯
+æ¨™æº– library ã® iostreamã«è¿‘ã¥ã‘ã‚‹ã€‚ã‚‚ã—ãã¯ iostream ã‹ã‚‰æ´¾ç”Ÿã•ã›ã‚‹ã€‚
+<li>Thread ã‚’æ‰±ã† classã€ã“ã‚Œã‚‚å˜ç´”ã« pthread ã® start routine ã¨ thread descriptor ã‚’
+éš è”½ã™ã‚‹ã ã‘ã«ç•™ã‚ã‚‹ã€‚
+<li>Thread ã® start routine ã®éš è”½ã®ä»•æ–¹ã¯ã€Java ã® runnable class ã‚’ model ã¨ã™ã‚‹ã€‚
 </ul>
 <hr>
-<h3>Socket ‚ÉŠÖ‚·‚é class</h3>
-<p>Socket class ‚ÉŠÖ‚µ‚Ä‚ÍAsocket descriptor ‚ğ‰B•Á‚·‚é‚±‚Æ‚ğ–Ú“I‚Æ‚·‚éB]‚Á‚ÄA—pˆÓ‚³‚ê‚é
-member ŠÖ”‚ÍŒ´‘¥‚Æ‚µ‚ÄABSD socket library ‚Ì socket descriptor ‚ğœ‚¢‚½‚à‚Ì‚Æ‚·‚éB
-<p>Socket descriptor ‚Í BSD socket library ‚Ì socket() ŠÖ”‚ğg‚Á‚Ä¶¬‚·‚é‚ªA
-BSD socket library ‚É‚Í‚à‚¤ˆê‚Â socket descriptor ‚ğ¶¬‚·‚é accept() ŠÖ”‚ª‚ ‚éB
-‚±‚ê‚Í stream Œ^‚Å listen ‚µ‚Ä‚¢‚é socket ‚©‚ç¶¬‚³‚ê‚éB‚±‚ê‚ğ‚Ç‚¤”½‰f‚³‚¹‚é‚©‚ª
-class İŒv‚É‘å‚«‚­‰e‹¿‚·‚éB‘åG”c‚ÉŸ‚Ì“ñ‚Â‚Ì•û–@‚ªl‚¦‚ç‚ê‚éB
+<h3>Socket ã«é–¢ã™ã‚‹ class</h3>
+<p>Socket class ã«é–¢ã—ã¦ã¯ã€socket descriptor ã‚’éš è”½ã™ã‚‹ã“ã¨ã‚’ç›®çš„ã¨ã™ã‚‹ã€‚å¾“ã£ã¦ã€ç”¨æ„ã•ã‚Œã‚‹
+member é–¢æ•°ã¯åŸå‰‡ã¨ã—ã¦ã€BSD socket library ã® socket descriptor ã‚’é™¤ã„ãŸã‚‚ã®ã¨ã™ã‚‹ã€‚
+<p>Socket descriptor ã¯ BSD socket library ã® socket() é–¢æ•°ã‚’ä½¿ã£ã¦ç”Ÿæˆã™ã‚‹ãŒã€
+BSD socket library ã«ã¯ã‚‚ã†ä¸€ã¤ socket descriptor ã‚’ç”Ÿæˆã™ã‚‹ accept() é–¢æ•°ãŒã‚ã‚‹ã€‚
+ã“ã‚Œã¯ stream å‹ã§ listen ã—ã¦ã„ã‚‹ socket ã‹ã‚‰ç”Ÿæˆã•ã‚Œã‚‹ã€‚ã“ã‚Œã‚’ã©ã†åæ˜ ã•ã›ã‚‹ã‹ãŒ
+class è¨­è¨ˆã«å¤§ããå½±éŸ¿ã™ã‚‹ã€‚å¤§é›‘æŠŠã«æ¬¡ã®äºŒã¤ã®æ–¹æ³•ãŒè€ƒãˆã‚‰ã‚Œã‚‹ã€‚
 <ul>
-<li>‹ó‚Ì Socket() ‚ğ new ‚µ‚ÄA‚»‚±‚Ö accept ‚µ‚½ descriptor ‚ğİ’è‚µA‚»‚Ì pointer ‚ğ•Ô‚·B
-<li>accept ‚Åì¬‚³‚ê‚½ descriptor ‚ğŠÜ‚Ş Socket ‚»‚Ì‚à‚Ì‚ğ•Ô‚·B
+<li>ç©ºã® Socket() ã‚’ new ã—ã¦ã€ãã“ã¸ accept ã—ãŸ descriptor ã‚’è¨­å®šã—ã€ãã® pointer ã‚’è¿”ã™ã€‚
+<li>accept ã§ä½œæˆã•ã‚ŒãŸ descriptor ã‚’å«ã‚€ Socket ãã®ã‚‚ã®ã‚’è¿”ã™ã€‚
 </ul>
-‘OÒ‚Ìê‡AÀ‘•‚Í—eˆÕ‚Å‚ ‚éB‚Ü‚½ƒƒ‚ƒŠ‚Ì—˜—pŒø—¦‚à‚æ‚¢B’A‚µAƒ†[ƒU‘¤‚Å‚Í
-ó‚¯æ‚Á‚½ pointer ‚É‘Î‚µAg—p‚ªI‚í‚Á‚½‚ç•K‚¸ delete ‚·‚é•K—v‚ª¶‚¶‚éB‚±‚ê‚ğ–Y‚ê‚é‚Æ
-descriptor ‚Ì–¢‰ğ•ú‚ª¶‚¶‚éBˆê•ûŒãÒ‚Ì•û–@‚Å‚ÍA‘ã“ü‰‰Zq‚ÌÀ‘•‚ª•s‰ÂŒ‡‚Æ‚È‚éB
-‘ã“ü‚ğÀ‘•‚·‚é‚½‚ß‚É‚Í socket descriptor ‚ÌƒRƒs[‚ª•K—v‚Å‚ ‚èAdescriptor ‘Œ¹‚ğ
-˜Q”ï‚·‚é‚±‚Æ‚É‚È‚éB‘Œ¹“I‚É‚Í–³‘Ê‚ª‘½‚¢‚Æv‚í‚ê‚é•û–@‚Å‚ ‚é‚ªAscope ‚©‚ç‚Í‚¸‚ê‚é‚Æ
-©“®“I‚É desctructor ‚ªŒÄ‚Î‚ê‚é‚Ì‚ÅAdestructor‚Å close ‚·‚é‚æ‚¤‚É‚µ‚Ä‚¨‚¯‚ÎAƒ†[ƒU‘¤‚Å‚Ì
-Œë‘€ì‚Í­‚È‚­‚È‚é‚ÆŠú‘Ò‚³‚ê‚éB‚Ü‚½Athread ‚Ì“Æ—§«‚ğ‚‚ß‚é‚½‚ß‚É‚àApointer ‚Å‚Í‚È‚­
-Socket ‚»‚Ì‚à‚Ì‚ğ thread ‚É‚½‚¹‚é•û‚ªˆµ‚¢‚â‚·‚¢‚Æl‚¦‚ç‚ê‚éB‚±‚±‚Å‚ÍŒãÒ‚Ì•û–@‚ğ‚Æ‚Á‚½B
-<h3>TCP stream ‚ÉŠÖ‚·‚é class</h3>
-<p><a href="index.htm">‘O‚Ìƒy[ƒW</a>‚Éq‚×‚½‚æ‚¤‚ÉA–{class ‚Í•W€library‚Ìiostream‚É
-‹ß‚Ã‚¯‚é‚±‚Æ‚ğwj‚Æ‚·‚éBiostream‚©‚ç”h¶‚³‚¹‚é‚±‚Æ‚à‚Å‚«‚Ä‚¢‚é‚ªAŒ»“_‚Ì”z•zƒpƒbƒP[ƒW‚É‚Í
-ŠÜ‚Ü‚ê‚Ä‚¢‚È‚¢B]‚Á‚ÄAŒ»“_‚Å‚Ímanipulator‚Ì“üo—Íæ‚Æ‚µ‚Ä‚Íw’è‚Å‚«‚È‚¢B
-<p>Socket ‚Ì¶¬–@‚Ìˆá‚¢‚É‚æ‚è
+å‰è€…ã®å ´åˆã€å®Ÿè£…ã¯å®¹æ˜“ã§ã‚ã‚‹ã€‚ã¾ãŸãƒ¡ãƒ¢ãƒªã®åˆ©ç”¨åŠ¹ç‡ã‚‚ã‚ˆã„ã€‚ä½†ã—ã€ãƒ¦ãƒ¼ã‚¶å´ã§ã¯
+å—ã‘å–ã£ãŸ pointer ã«å¯¾ã—ã€ä½¿ç”¨ãŒçµ‚ã‚ã£ãŸã‚‰å¿…ãš delete ã™ã‚‹å¿…è¦ãŒç”Ÿã˜ã‚‹ã€‚ã“ã‚Œã‚’å¿˜ã‚Œã‚‹ã¨
+descriptor ã®æœªè§£æ”¾ãŒç”Ÿã˜ã‚‹ã€‚ä¸€æ–¹å¾Œè€…ã®æ–¹æ³•ã§ã¯ã€ä»£å…¥æ¼”ç®—å­ã®å®Ÿè£…ãŒä¸å¯æ¬ ã¨ãªã‚‹ã€‚
+ä»£å…¥ã‚’å®Ÿè£…ã™ã‚‹ãŸã‚ã«ã¯ socket descriptor ã®ã‚³ãƒ”ãƒ¼ãŒå¿…è¦ã§ã‚ã‚Šã€descriptor è³‡æºã‚’
+æµªè²»ã™ã‚‹ã“ã¨ã«ãªã‚‹ã€‚è³‡æºçš„ã«ã¯ç„¡é§„ãŒå¤šã„ã¨æ€ã‚ã‚Œã‚‹æ–¹æ³•ã§ã‚ã‚‹ãŒã€scope ã‹ã‚‰ã¯ãšã‚Œã‚‹ã¨
+è‡ªå‹•çš„ã« desctructor ãŒå‘¼ã°ã‚Œã‚‹ã®ã§ã€destructorã§ close ã™ã‚‹ã‚ˆã†ã«ã—ã¦ãŠã‘ã°ã€ãƒ¦ãƒ¼ã‚¶å´ã§ã®
+èª¤æ“ä½œã¯å°‘ãªããªã‚‹ã¨æœŸå¾…ã•ã‚Œã‚‹ã€‚ã¾ãŸã€thread ã®ç‹¬ç«‹æ€§ã‚’é«˜ã‚ã‚‹ãŸã‚ã«ã‚‚ã€pointer ã§ã¯ãªã
+Socket ãã®ã‚‚ã®ã‚’ thread ã«æŒãŸã›ã‚‹æ–¹ãŒæ‰±ã„ã‚„ã™ã„ã¨è€ƒãˆã‚‰ã‚Œã‚‹ã€‚ã“ã“ã§ã¯å¾Œè€…ã®æ–¹æ³•ã‚’ã¨ã£ãŸã€‚
+<h3>TCP stream ã«é–¢ã™ã‚‹ class</h3>
+<p><a href="index.htm">å‰ã®ãƒšãƒ¼ã‚¸</a>ã«è¿°ã¹ãŸã‚ˆã†ã«ã€æœ¬class ã¯æ¨™æº–libraryã®iostreamã«
+è¿‘ã¥ã‘ã‚‹ã“ã¨ã‚’æŒ‡é‡ã¨ã™ã‚‹ã€‚iostreamã‹ã‚‰æ´¾ç”Ÿã•ã›ã‚‹ã“ã¨ã‚‚ã§ãã¦ã„ã‚‹ãŒã€ç¾æ™‚ç‚¹ã®é…å¸ƒãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ã«ã¯
+å«ã¾ã‚Œã¦ã„ãªã„ã€‚å¾“ã£ã¦ã€ç¾æ™‚ç‚¹ã§ã¯manipulatorã®å…¥å‡ºåŠ›å…ˆã¨ã—ã¦ã¯æŒ‡å®šã§ããªã„ã€‚
+<p>Socket ã®ç”Ÿæˆæ³•ã®é•ã„ã«ã‚ˆã‚Š
 <ul>
-<li><em>TCPClient</em>@Fsocket()+connect()‚Å¶¬
-<li><em>TCPServer</em>@Fsocket()+bind()‚Å¶¬
-<li><em>TCPSocket</em>@Faccept()‚Å¶¬
+<li><em>TCPClient</em>ã€€ï¼šsocket()+connect()ã§ç”Ÿæˆ
+<li><em>TCPServer</em>ã€€ï¼šsocket()+bind()ã§ç”Ÿæˆ
+<li><em>TCPSocket</em>ã€€ï¼šaccept()ã§ç”Ÿæˆ
 </ul>
-‚Ì‚R‚Â‚Ìclass‚ğ—pˆÓ‚µ‚½B‚±‚Ì‚¤‚¿<em>TCPClinet</em>‹y‚Ñ<em>TCPSocket</em>‚Í‚Æ‚à‚É iostream“I
-‚È“üo—Í‚ğs‚¤‚Ì‚ÅA<em>TCPBuffer</em>‚Æ‚¢‚¤class‚ğ—pˆÓ‚µA‚»‚ê‚©‚ç”h¶‚³‚¹‚Ä‚¢‚éB
-iostream ‚Ì—p–@‚É‡‚í‚¹‚é‚½‚ßAstd::ios class ‚É‚ ‚é iostateƒtƒ‰ƒO‚ÉŠÖ‚·‚éŠÖ”‚Ì‚¤‚¿
+ã®ï¼“ã¤ã®classã‚’ç”¨æ„ã—ãŸã€‚ã“ã®ã†ã¡<em>TCPClinet</em>åŠã³<em>TCPSocket</em>ã¯ã¨ã‚‚ã« iostreamçš„
+ãªå…¥å‡ºåŠ›ã‚’è¡Œã†ã®ã§ã€<em>TCPBuffer</em>ã¨ã„ã†classã‚’ç”¨æ„ã—ã€ãã‚Œã‹ã‚‰æ´¾ç”Ÿã•ã›ã¦ã„ã‚‹ã€‚
+iostream ã®ç”¨æ³•ã«åˆã‚ã›ã‚‹ãŸã‚ã€std::ios class ã«ã‚ã‚‹ iostateãƒ•ãƒ©ã‚°ã«é–¢ã™ã‚‹é–¢æ•°ã®ã†ã¡
 <ul>
 <li>operator void*() const
 <li>bool operator!() const
@@ -76,8 +76,8 @@ iostream ‚Ì—p–@‚É‡‚í‚¹‚é‚½‚ßAstd::ios class ‚É‚ ‚é iostateƒtƒ‰ƒO‚ÉŠÖ‚·‚éŠÖ”‚Ì
 <li>bool fail() const
 <li>bool bad() const
 </ul>
-‚ğ—pˆÓ‚µ‚½B
-<p>“ü—Í‚ÉŠÖ‚µ‚Ä std::istream class ‚Æ‚Ì‘Î‰‚ğˆÈ‰º‚Ì•\‚É¦‚·B
+ã‚’ç”¨æ„ã—ãŸã€‚
+<p>å…¥åŠ›ã«é–¢ã—ã¦ std::istream class ã¨ã®å¯¾å¿œã‚’ä»¥ä¸‹ã®è¡¨ã«ç¤ºã™ã€‚
 <table border="1">
 <tr><td>member function<td>implemented
 <tr><td>streamsize gcount() const<td>yes
@@ -87,7 +87,7 @@ iostream ‚Ì—p–@‚É‡‚í‚¹‚é‚½‚ßAstd::ios class ‚É‚ ‚é iostateƒtƒ‰ƒO‚ÉŠÖ‚·‚éŠÖ”‚Ì
 <tr><td>istream& get(char* s, streamsize n, char delim)<td>no
 <tr><td>istream& getline(char* s, streamsize n)<td>yes
 <tr><td>istream& getline(char* s, streamsize n, char delim)<td>no
-<tr><td>istream& ignore(streamsize n=1, int delim=traits::eof())<td>delim –³‚µ‚ÅÀ‘•
+<tr><td>istream& ignore(streamsize n=1, int delim=traits::eof())<td>delim ç„¡ã—ã§å®Ÿè£…
 <tr><td>int peek()<td>no
 <tr><td>istream& read(char* s, streamsize n)<td>yes
 <tr><td>int readsome(char* s, streamsize n)<td>no
@@ -95,7 +95,7 @@ iostream ‚Ì—p–@‚É‡‚í‚¹‚é‚½‚ßAstd::ios class ‚É‚ ‚é iostateƒtƒ‰ƒO‚ÉŠÖ‚·‚éŠÖ”‚Ì
 <tr><td>istream& unget()<td>no
 <tr><td>int sync()<td>yes
 </table>
-<p>o—Í‚ÉŠÖ‚µ‚Ä‚Í std::ostream class ‚Æ‚Ì‘Î‰‚ÍˆÈ‰º‚Ì’Ê‚èB
+<p>å‡ºåŠ›ã«é–¢ã—ã¦ã¯ std::ostream class ã¨ã®å¯¾å¿œã¯ä»¥ä¸‹ã®é€šã‚Šã€‚
 <table border="1">
 <tr><td>member function<td>implemented
 <tr><td>ostream& put(char c)<td>yes
@@ -103,27 +103,27 @@ iostream ‚Ì—p–@‚É‡‚í‚¹‚é‚½‚ßAstd::ios class ‚É‚ ‚é iostateƒtƒ‰ƒO‚ÉŠÖ‚·‚éŠÖ”‚Ì
 <tr><td>ostream& flush()<td>yes
 </table>
 <hr>
-<h3>Thread ŠÖ˜A class</h3>
-<p><em>Thread</em> class ‚ÉŠÖ‚µ‚Ä‚ÍAstart routine ‚Æ thread desciptor ‚ğ‰B•Á‚·‚éB
-start routine ‚ğ‰B•Á‚·‚é——R‚ÍAˆê”Ê‚É start routine ‚Í global object
-‚Å‚ ‚èAthread ‚Å‘€ì‚µ‚½‚¢ data object ‚Æ‚ÌŒ‹‚Ñ‚Â‚«‚ğƒ†[ƒU‚ªİ’è‚µ‚È‚¯‚ê‚Î‚È‚ç‚È‚¢‚½‚ß‚ÉA
-ƒ†[ƒU‚É‚Æ‚Á‚Ä•K‚¸‚µ‚àg‚¢‚â‚·‚­‚È‚¢‚©‚ç‚Å‚ ‚éB
-<p>C++ ‚Íƒf[ƒ^‚Æ‚»‚Ì‘€ìŠÖ”‚ğˆê‘Ì“I‚É
-‹Lq‚Å‚«‚é‚±‚Æ‚ª—˜“_‚Ìˆê‚Â‚Å‚ ‚é‚Ì‚ÅA‚±‚ê‚ğˆê‘Ì“I‚Éˆµ‚¦‚éİŒv‚É‚µ‚½B
-‚±‚Ì model ‚Æ‚µ‚Ä Java ‚Ì runnable class “I‚Ég‚¦‚éİŒv‚É‚µ‚½B
+<h3>Thread é–¢é€£ class</h3>
+<p><em>Thread</em> class ã«é–¢ã—ã¦ã¯ã€start routine ã¨ thread desciptor ã‚’éš è”½ã™ã‚‹ã€‚
+start routine ã‚’éš è”½ã™ã‚‹ç†ç”±ã¯ã€ä¸€èˆ¬ã« start routine ã¯ global object
+ã§ã‚ã‚Šã€thread ã§æ“ä½œã—ãŸã„ data object ã¨ã®çµã³ã¤ãã‚’ãƒ¦ãƒ¼ã‚¶ãŒè¨­å®šã—ãªã‘ã‚Œã°ãªã‚‰ãªã„ãŸã‚ã«ã€
+ãƒ¦ãƒ¼ã‚¶ã«ã¨ã£ã¦å¿…ãšã—ã‚‚ä½¿ã„ã‚„ã™ããªã„ã‹ã‚‰ã§ã‚ã‚‹ã€‚
+<p>C++ ã¯ãƒ‡ãƒ¼ã‚¿ã¨ãã®æ“ä½œé–¢æ•°ã‚’ä¸€ä½“çš„ã«
+è¨˜è¿°ã§ãã‚‹ã“ã¨ãŒåˆ©ç‚¹ã®ä¸€ã¤ã§ã‚ã‚‹ã®ã§ã€ã“ã‚Œã‚’ä¸€ä½“çš„ã«æ‰±ãˆã‚‹è¨­è¨ˆã«ã—ãŸã€‚
+ã“ã® model ã¨ã—ã¦ Java ã® runnable class çš„ã«ä½¿ãˆã‚‹è¨­è¨ˆã«ã—ãŸã€‚
 <p>
-ƒ†[ƒU‚ÍŠî–{“I‚É Thread ‚Æ‚µ‚ÄÀs‚µ‚½‚¢ŠÖ”‹y‚Ñ‚»‚Ì‚É•K—v‚Æ‚È‚é
-data ‚ğ‚Ğ‚Æ‚Ü‚Æ‚ß‚É‚µ‚Ä Thread class ‚©‚ç”h¶‚³‚¹‚½ class ‚ğ‚Â‚­‚èA
+ãƒ¦ãƒ¼ã‚¶ã¯åŸºæœ¬çš„ã« Thread ã¨ã—ã¦å®Ÿè¡Œã—ãŸã„é–¢æ•°åŠã³ãã®æ™‚ã«å¿…è¦ã¨ãªã‚‹
+data ã‚’ã²ã¨ã¾ã¨ã‚ã«ã—ã¦ Thread class ã‹ã‚‰æ´¾ç”Ÿã•ã›ãŸ class ã‚’ã¤ãã‚Šã€
 <ul>
-<li>Thread ‚Æ‚µ‚ÄÀs‚³‚ê‚é int run() ŠÖ”‚ğã‘‚«‚·‚éB
-<li>Thread class ‚Ì member ŠÖ” start() ‚ğŒÄ‚Ño‚·B
+<li>Thread ã¨ã—ã¦å®Ÿè¡Œã•ã‚Œã‚‹ int run() é–¢æ•°ã‚’ä¸Šæ›¸ãã™ã‚‹ã€‚
+<li>Thread class ã® member é–¢æ•° start() ã‚’å‘¼ã³å‡ºã™ã€‚
 </ul>
-‚Æ‚·‚ê‚Î‚æ‚¢B
-<p>Thread ŠÔ‚Å‚Ì”r‘¼§Œä‚â“¯Šú‚ğ‚Æ‚é‚½‚ß‚ÉA<em>Mutex</em> ‚Æ <em>Semaphore</em> ‚Ì
-“ñ‚Â‚Ì class ‚ğ—pˆÓ‚µ‚½B‚±‚ê‚ç‚Í‚¢‚¸‚ê‚à POSIX ‚Ì mutex ‚Æ semaphore ‚É‘Î‰
-‚³‚¹‚Ä‚ ‚éB
+ã¨ã™ã‚Œã°ã‚ˆã„ã€‚
+<p>Thread é–“ã§ã®æ’ä»–åˆ¶å¾¡ã‚„åŒæœŸã‚’ã¨ã‚‹ãŸã‚ã«ã€<em>Mutex</em> ã¨ <em>Semaphore</em> ã®
+äºŒã¤ã® class ã‚’ç”¨æ„ã—ãŸã€‚ã“ã‚Œã‚‰ã¯ã„ãšã‚Œã‚‚ POSIX ã® mutex ã¨ semaphore ã«å¯¾å¿œ
+ã•ã›ã¦ã‚ã‚‹ã€‚
 <hr>
-[<a href="index.htm">–ß‚é</a>]
+[<a href="index.htm">æˆ»ã‚‹</a>]
 <hr>
 </body>
 </html>
